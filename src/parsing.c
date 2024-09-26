@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:00:07 by anvacca           #+#    #+#             */
-/*   Updated: 2024/09/18 15:07:00 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/09/25 14:59:17 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,20 @@ t_bool	check_argv(char **av)
 {
 	unsigned int	i;
 
-	i = 0;
+	i = 1;
 	while (av[i])
 	{
-		if (!isnumber(av[i]))
+		if (!isnumber(av[i]) || av[i][0] == '0')
 		{
 			printf("Incorect Arguments!\n");
 			return (false);
 		}
 		i++;
 	}
-	if ((av[4] && av[4][0] == '0') || !av[i - 1][0])
+	if (av[5] && (av[5][0] == '0' || !av[5][0]))
 	{
-		printf("┌П┐(◉_◉)┌П┐\n");
-		exit(1);
+		printf("nope! ┌П┐(◉_◉)┌П┐\n");
+		return (false);
 	}
 	return (true);
 }
@@ -64,5 +64,12 @@ t_bool	check_argc(int ac)
 			printf("Too many arguments!\n");
 		return (false);
 	}
+	return (true);
+}
+
+t_bool	parsing(int ac, char **av)
+{
+	if (!check_argc(ac) || !check_argv(av))
+		return (false);
 	return (true);
 }

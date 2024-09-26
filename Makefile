@@ -6,7 +6,7 @@
 #    By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 14:33:54 by anvacca           #+#    #+#              #
-#    Updated: 2024/09/18 14:35:43 by anvacca          ###   ########.fr        #
+#    Updated: 2024/09/25 15:58:22 by anvacca          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,12 @@ EXE			=	philo
 # Files
 SRC			=	./src/main.c \
 				./src/parsing.c \
+				./src/routine.c \
 
 SRC_UTILS	=	./src/utils/ft_atoui.c \
+				./src/utils/ft_get_time.c \
+				./src/utils/ft_usleep.c \
+				# ./src/utils/ft_eat.c \
 
 
 SOURCES		=	${SRC} ${SRC_UTILS}
