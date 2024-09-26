@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:55:54 by anvacca           #+#    #+#             */
-/*   Updated: 2024/09/25 16:07:16 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/09/26 16:10:54 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void	init_thread(t_gen *gen)
 	i = 0;
 	while (i < gen->philo_stats.nbr_of_philos)
 	{
+		printf("\e[31m%d \n \e[0m", i);
 		pthread_join(gen->philos[i].thread, NULL);
 		i++;
 	}
+	puts("enorme fils de pute");
+
 }
 
 void	init_mutex(t_gen *gen)
@@ -61,17 +64,19 @@ void	set_stats(char **av, t_gen *gen)
 	else
 		gen->philo_stats.cycles = 0;
 	gen->philo_stats.key = 0;
+	gen->philo_stats.died = 0;
 	gen->philo_stats.time_start = ft_get_time();
+	pthread_mutex_init(&gen->philo_stats.death_note, NULL);
 }
 
 int	main(int ac, char **av)
 {
 	t_gen	*gen;
-
+	
 	if (!parsing(ac, av))
 	{
 		printf("ERROR\nUsage:<number_of_philo> <time_to_die> <time_to_eat> <time_to_sleep>\n");
-		exit(1);
+		return(1);
 	}
 	gen = malloc(sizeof(t_gen));
 	set_stats(av, gen);

@@ -6,7 +6,7 @@
 #    By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 14:33:54 by anvacca           #+#    #+#              #
-#    Updated: 2024/09/25 15:58:22 by anvacca          ###   ########.fr        #
+#    Updated: 2024/09/26 15:17:51 by anvacca          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,7 @@ SRC			=	./src/main.c \
 
 SRC_UTILS	=	./src/utils/ft_atoui.c \
 				./src/utils/ft_get_time.c \
-				./src/utils/ft_usleep.c \
-				# ./src/utils/ft_eat.c \
+				./src/utils/ft_wait.c \
 
 
 SOURCES		=	${SRC} ${SRC_UTILS}

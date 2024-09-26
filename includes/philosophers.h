@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:01:49 by anvacca           #+#    #+#             */
-/*   Updated: 2024/09/26 12:25:28 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/09/26 15:17:55 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ struct				s_stats
 	unsigned int	cycles;
 	unsigned long	time_start;
 	unsigned int	key;
+	unsigned int	died;
+	pthread_mutex_t	death_note;
 };
 
 typedef struct s_philos
@@ -47,7 +49,7 @@ typedef struct s_philos
 	pthread_mutex_t	*right_fork;
 	unsigned int	id;
 	unsigned int	ate;
-	unsigned int	death;
+	unsigned long	death_timer;
 	struct s_stats	*stats;
 }					t_philos;
 
@@ -60,7 +62,7 @@ typedef struct s_gen
 // UTILS
 unsigned int		ft_atoui(char *str);
 unsigned long		ft_get_time(void);
-void				ft_usleep(unsigned int time_to_x);
+void				ft_wait(unsigned int time_to_x, t_philos *philo);
 
 // PARSING
 t_bool				parsing(int ac, char **av);
