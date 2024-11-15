@@ -22,11 +22,15 @@ void	ft_wait(unsigned int time_to_x, t_philos *philo)
 		if (ft_get_time() - philo->death_timer > philo->stats->time_to_die)
 		{
 			pthread_mutex_lock(&philo->stats->death_note);
-			printf("\e[31mcurrent time %lu || philo %u died\n", ft_get_time()
-			- philo->stats->time_start , philo->id);
-			philo->stats->died = 1;
+			if (philo->stats->died == 0 && philo->is_dead == 0)
+			{
+				philo->is_dead = 1;
+				pthread_mutex_unlock(&philo->stats->death_note);
+				return ;
+			}
+			pthread_mutex_unlock(&philo->stats->death_note);
 			return ;
 		}
-		usleep(50);
+		usleep(10);
 	}
 }

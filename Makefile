@@ -6,7 +6,7 @@
 #    By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 14:33:54 by anvacca           #+#    #+#              #
-#    Updated: 2024/09/26 15:17:51 by anvacca          ###   ########.fr        #
+#    Updated: 2024/11/14 11:14:48 by anvacca          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ EXE			=	philo
 SRC			=	./src/main.c \
 				./src/parsing.c \
 				./src/routine.c \
+				./src/death_god.c \
 
 SRC_UTILS	=	./src/utils/ft_atoui.c \
 				./src/utils/ft_get_time.c \
 				./src/utils/ft_wait.c \
+				./src/utils/ft_abs.c \
 
 
 SOURCES		=	${SRC} ${SRC_UTILS}
@@ -28,7 +30,7 @@ OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS		=	-Wall -Werror -Wextra -fsanitize=thread -g
 RM			=	rm -rf
 
 # Makefile
