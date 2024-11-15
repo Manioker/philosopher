@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:25:55 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 13:27:05 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 14:39:00 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,5 @@ void	ft_think(t_philos *philo)
 			philo->id);
 	}
 	pthread_mutex_unlock(&philo->stats->death_note);
-	if (philo->stats->ate == 1)
-		ft_wait(philo->stats->time_to_think, philo);
+	ft_wait(philo->stats->time_to_think, philo);
 }

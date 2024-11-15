@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:55:54 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 12:51:34 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 14:54:22 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	init_mutex(t_gen *gen)
 	unsigned int	i;
 
 	i = 0;
-	gen->philos = malloc(sizeof(t_philos) * gen->philo_stats.nbr_of_philos);
 	while (i < gen->philo_stats.nbr_of_philos)
 	{
 		gen->philos[i].id = i + 1;
@@ -73,7 +72,6 @@ void	set_stats(char **av, t_gen *gen)
 		gen->philo_stats.cycles = 0;
 	gen->philo_stats.died = 0;
 	gen->philo_stats.god_died = 0;
-	gen->philo_stats.ate = 0;
 	gen->philo_stats.time_start = ft_get_time();
 	pthread_mutex_init(&gen->philo_stats.death_note, NULL);
 }
@@ -89,7 +87,6 @@ void	destroy_mutex(t_gen *gen)
 		i++;
 	}
 	pthread_mutex_destroy(&gen->philo_stats.death_note);
-	free(gen->philos);
 }
 
 int	main(int ac, char **av)

@@ -6,7 +6,7 @@
 #    By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/18 14:33:54 by anvacca           #+#    #+#              #
-#    Updated: 2024/11/15 13:53:56 by anvacca          ###   ########.fr        #
+#    Updated: 2024/11/15 15:10:12 by anvacca          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OBJECTS		=	${SOURCES:%.c=obj/%.o}
 
 # Variables
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS		=	-Wall -Werror -Wextra
 RM			=	rm -rf
 
 # Makefile

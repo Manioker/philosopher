@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 13:25:58 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 13:34:14 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 14:56:30 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ void	ft_eat(t_philos *philo)
 	pthread_mutex_unlock(&philo->stats->death_note);
 	philo->death_timer = ft_get_time();
 	ft_wait(philo->stats->time_to_eat, philo);
-	pthread_mutex_lock(&philo->stats->death_note);
-	philo->stats->ate = 1;
-	pthread_mutex_unlock(&philo->stats->death_note);
 	pthread_mutex_unlock(&philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }

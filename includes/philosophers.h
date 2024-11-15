@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:01:49 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 13:34:36 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 14:54:13 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ struct				s_stats
 	unsigned long	time_start;
 	unsigned int	died;
 	unsigned int	god_died;
-	unsigned int	ate;
 	pthread_mutex_t	death_note;
 };
 
@@ -59,7 +58,7 @@ typedef struct s_gen
 {
 	pthread_t		god;
 	struct s_stats	philo_stats;
-	struct s_philos	*philos;
+	struct s_philos	philos[200];
 }					t_gen;
 
 // UTILS
