@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:01:49 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/14 15:00:59 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 13:34:36 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ struct				s_stats
 	unsigned int	time_to_die;
 	unsigned int	time_to_eat;
 	unsigned int	time_to_sleep;
+	unsigned int	time_to_think;
 	unsigned int	cycles;
 	unsigned long	time_start;
 	unsigned int	died;
 	unsigned int	god_died;
+	unsigned int	ate;
 	pthread_mutex_t	death_note;
 };
 
@@ -57,20 +59,23 @@ typedef struct s_gen
 {
 	pthread_t		god;
 	struct s_stats	philo_stats;
-	struct s_philos	philos[200];
+	struct s_philos	*philos;
 }					t_gen;
 
 // UTILS
 unsigned int		ft_atoui(char *str);
 unsigned long		ft_get_time(void);
 void				ft_wait(unsigned int time_to_x, t_philos *philo);
-unsigned int		ft_abs(unsigned int nbr);
+unsigned int		ft_abs(t_gen *gen);
 
 // PARSING
 t_bool				parsing(int ac, char **av);
 
 // GENERAL
 void				*routine(void *args);
+void				ft_sleep(t_philos *philo);
+void				ft_eat(t_philos *philo);
+void				ft_think(t_philos *philo);
 void				*death_god(void *args);
 
 #endif

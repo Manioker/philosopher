@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs.c                                           :+:      :+:    :+:   */
+/*   ft_sleep.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/22 15:57:43 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 13:35:31 by anvacca          ###   ########.fr       */
+/*   Created: 2024/11/15 13:24:48 by anvacca           #+#    #+#             */
+/*   Updated: 2024/11/15 13:25:41 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/philosophers.h"
+#include "../includes/philosophers.h"
 
-unsigned int	ft_abs(t_gen *gen)
+void	ft_sleep(t_philos *philo)
 {
-	if (gen->philo_stats.time_to_sleep > gen->philo_stats.time_to_eat)
-		return (gen->philo_stats.time_to_sleep - gen->philo_stats.time_to_eat);
-	else if (gen->philo_stats.time_to_sleep < gen->philo_stats.time_to_eat)
-		return (gen->philo_stats.time_to_eat - gen->philo_stats.time_to_sleep);
-	return (0);
+	pthread_mutex_lock(&philo->stats->death_note);
+	if (philo->stats->died == 0 && philo->is_dead == 0)
+		printf("%lu %u is sleeping\n", ft_get_time() - philo->stats->time_start,
+			philo->id);
+	pthread_mutex_unlock(&philo->stats->death_note);
+	ft_wait(philo->stats->time_to_sleep, philo);
 }

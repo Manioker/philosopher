@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:55:54 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/14 15:20:29 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/15 12:51:34 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	init_mutex(t_gen *gen)
 	unsigned int	i;
 
 	i = 0;
+	gen->philos = malloc(sizeof(t_philos) * gen->philo_stats.nbr_of_philos);
 	while (i < gen->philo_stats.nbr_of_philos)
 	{
 		gen->philos[i].id = i + 1;
@@ -59,18 +60,20 @@ void	set_stats(char **av, t_gen *gen)
 	gen->philo_stats.nbr_of_philos = ft_atoui(av[1]);
 	if (gen->philo_stats.nbr_of_philos > 200)
 	{
-		printf("NTM");
+		printf("Nope...");
 		exit(1);
 	}
 	gen->philo_stats.time_to_die = ft_atoui(av[2]);
 	gen->philo_stats.time_to_eat = ft_atoui(av[3]);
 	gen->philo_stats.time_to_sleep = ft_atoui(av[4]);
+	gen->philo_stats.time_to_think = ft_abs(gen);
 	if (av[5])
 		gen->philo_stats.cycles = ft_atoui(av[5]);
 	else
 		gen->philo_stats.cycles = 0;
 	gen->philo_stats.died = 0;
 	gen->philo_stats.god_died = 0;
+	gen->philo_stats.ate = 0;
 	gen->philo_stats.time_start = ft_get_time();
 	pthread_mutex_init(&gen->philo_stats.death_note, NULL);
 }
