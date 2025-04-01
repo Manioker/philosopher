@@ -12,18 +12,6 @@
 
 #include "../../includes/philosophers.h"
 
-static void	check_death(t_philos *philo)
-{
-	pthread_mutex_lock(&philo->stats->death_note);
-	if (philo->stats->died == 0 && philo->is_dead == 0)
-	{
-		philo->is_dead = 1;
-		pthread_mutex_unlock(&philo->stats->death_note);
-		return ;
-	}
-	pthread_mutex_unlock(&philo->stats->death_note);
-}
-
 void	ft_wait(unsigned int time_to_x, t_philos *philo)
 {
 	unsigned long	time;
@@ -31,11 +19,13 @@ void	ft_wait(unsigned int time_to_x, t_philos *philo)
 	time = ft_get_time();
 	while (ft_get_time() - time < time_to_x)
 	{
-		if (ft_get_time() - philo->death_timer > philo->stats->time_to_die)
+		pthread_mutex_lock(&philo->stats->death_note);
+		if (philo->stats->died == 1)
 		{
-			check_death(philo);
+			pthread_mutex_unlock(&philo->stats->death_note);
 			return ;
 		}
-		usleep(10);
+		pthread_mutex_unlock(&philo->stats->death_note);
+		usleep(60);
 	}
 }

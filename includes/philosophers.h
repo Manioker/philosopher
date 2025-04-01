@@ -6,7 +6,7 @@
 /*   By: anvacca <anvacca@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 13:01:49 by anvacca           #+#    #+#             */
-/*   Updated: 2024/11/15 14:54:13 by anvacca          ###   ########.fr       */
+/*   Updated: 2024/11/22 11:22:06 by anvacca          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ struct				s_stats
 	unsigned int	time_to_sleep;
 	unsigned int	time_to_think;
 	unsigned int	cycles;
+	unsigned int	philo_cycles;
 	unsigned long	time_start;
 	unsigned int	died;
 	unsigned int	god_died;
@@ -49,7 +50,7 @@ typedef struct s_philos
 	pthread_mutex_t	left_fork;
 	pthread_mutex_t	*right_fork;
 	unsigned int	id;
-	unsigned int	is_dead;
+	unsigned int	meal;
 	unsigned long	death_timer;
 	struct s_stats	*stats;
 }					t_philos;
@@ -65,7 +66,6 @@ typedef struct s_gen
 unsigned int		ft_atoui(char *str);
 unsigned long		ft_get_time(void);
 void				ft_wait(unsigned int time_to_x, t_philos *philo);
-unsigned int		ft_abs(t_gen *gen);
 
 // PARSING
 t_bool				parsing(int ac, char **av);
